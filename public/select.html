@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Escolha seu Personagem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Escolha seu Personagem</h1>
+    <div id="selecionar">
+        <div class="personagem-container">
+            <img src="assets/personagem1.png" id="p1" class="personagem" onclick="selecionar('p1')">
+            <div class="personagem-nome">NICK</div>
+        </div>
+        <div class="personagem-container">
+            <img src="assets/personagem2.png" id="p2" class="personagem" onclick="selecionar('p2')">
+            <div class="personagem-nome">LEO</div>
+        </div>
+    </div>
+    <button onclick="iniciarJogo()">Iniciar Jogo</button>
+
+    <script>
+        let personagemSelecionado = "";
+
+        function selecionar(personagem) {
+            // Remove a seleção de todos os personagens
+            document.querySelectorAll(".personagem").forEach(p => p.classList.remove("selecionado"));
+            
+            // Adiciona a seleção ao personagem clicado
+            document.getElementById(personagem).classList.add("selecionado");
+            personagemSelecionado = personagem;
+        }
+
+        function iniciarJogo() {
+            if (personagemSelecionado) {
+                localStorage.setItem("personagem", personagemSelecionado);
+                window.location.href = "/game";
+            } else {
+                alert("Escolha um personagem!");
+            }
+        }
+    </script>
+</body>
+</html>
