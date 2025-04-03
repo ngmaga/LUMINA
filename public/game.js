@@ -62,9 +62,31 @@ function abrirMemoria() {
 function fecharMemoria() {
     porta.aberta = true;  
     document.getElementById("memoriaModal").style.display = "none";
-    alert("Porta aberta! Continue o jogo.");
     desenhar();
 }
+
+const muteBtn = document.getElementById("mute-btn");
+
+muteBtn.addEventListener("click", () => {
+    if (musica.muted) {
+        musica.muted = false;
+        muteBtn.textContent = "🔊 Som Ligado";
+    } else {
+        musica.muted = true;
+        muteBtn.textContent = "🔇 Som Desligado";
+    }
+});
+ 
+// Criar um elemento de áudio para a música de fundo
+const musica = new Audio("assets/musica.mp3");
+musica.loop = true; // Repetir a música
+musica.volume = 0.5; // Ajuste de volume
+
+// Iniciar a música quando o jogo carregar
+window.addEventListener("load", () => {
+    musica.play().catch(error => console.log("Erro ao iniciar áudio:", error));
+});
+ 
 
 /* Inicializa o jogo */
 desenhar();

@@ -16,5 +16,6 @@ app.get("/game", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "game.html"));
 });
 
+
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
